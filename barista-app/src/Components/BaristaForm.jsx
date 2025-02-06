@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import RecipeChoices from "./RecipeChoices"; // ✅ Import RecipeChoices component
+import RecipeChoices from "./RecipeChoices";
+import drinksJson from "../drinks.json"; // Import drinks.json
 
 const BaristaForm = () => {
-  // ✅ State to track user selections
+  // State for user inputs
   const [inputs, setInputs] = useState({
     temperature: "",
     milk: "",
@@ -10,7 +11,11 @@ const BaristaForm = () => {
     blended: "",
   });
 
-  // ✅ List of available choices for each ingredient
+  // State for current drink
+  const [currentDrink, setCurrentDrink] = useState("");
+  const [trueRecipe, setTrueRecipe] = useState({});
+
+  // List of ingredient choices
   const ingredients = {
     temperature: ["hot", "lukewarm", "cold"],
     syrup: ["mocha", "vanilla", "toffee", "maple", "caramel", "other", "none"],
@@ -18,14 +23,48 @@ const BaristaForm = () => {
     blended: ["yes", "turbo", "no"],
   };
 
-  const onNewDrink = () => {};
+  // Function to get a random drink
+  const getNextDrink = () => {
+    let randomDrinkIndex = Math.floor(Math.random() * drinksJson.drinks.length);
+    let selectedDrink = drinksJson.drinks[randomDrinkIndex];
+
+    setCurrentDrink(selectedDrink.name);
+    setTrueRecipe(selectedDrink.ingredients);
+  };
+
+  // Reset inputs and fetch a new drink
+  const onNewDrink = () => {
+    setInputs({
+      temperature: "",
+      milk: "",
+      syrup: "",
+      blended: "",
+    });
+
+    getNextDrink();
+  };
+
   const onCheckAnswer = () => {};
 
   return (
     <div>
       <h2>Hi, I'd like to order a:</h2>
+
+      {/* Display the current drink */}
+      <div className="drink-container">
+        <h2 className="mini-header">{currentDrink}</h2>
+        <button
+            type="new-drink-button"
+            className="button newdrink"
+            onClick={onNewDrink}
+        >
+            🔄
+        </button>
+        </div>
+
+
+      {/* Form for selecting ingredients */}
       <form>
-        {/* ✅ Add form sections for each ingredient */}
         {Object.keys(ingredients).map((category) => (
           <div key={category}>
             <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
@@ -45,6 +84,7 @@ const BaristaForm = () => {
         ))}
       </form>
 
+      {/* Buttons */}
       <button type="submit" className="button submit" onClick={onCheckAnswer}>
         Check Answer
       </button>
