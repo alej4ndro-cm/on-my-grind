@@ -17,32 +17,58 @@ html, body {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: white;
 }
 
-li {
-  list-style: none;
+.title-container {
+  text-align: center;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-with-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.coffee-logo {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+.title {
+  display: inline-block;
+  margin: 0;
+  font-size: 2.5em;
+  line-height: 1;
 }
 
 .container {
   display: flex;
-  justify-content: center;  /* Changed from space-evenly */
+  justify-content: center;
   align-items: flex-start;
   margin: auto;
   position: relative;
-  gap: 10px;             /* Add smaller gap */
-  max-width: 900px;      /* Limit max width */
+  gap: 10px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mini-container {
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
-  margin: 15px;          /* Reduced from 25px */
+  align-items: center;
+  margin: 15px;
   padding: 15px;
   border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  min-width: 180px;      /* Slightly reduced */
+  min-width: 180px;
   min-height: 250px;
   background-color: white;
 }
@@ -54,11 +80,11 @@ li {
   background-color: rgb(226, 195, 147);
   text-align: center;
   border-radius: 10px;
-  width: 100%;      /* Make it full width */
+  width: 100%;
   margin: 0;
-  display: flex;    /* Add this to center text */
-  align-items: center;  /* Center vertically */
-  justify-content: center;  /* Center horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #wrong {
@@ -74,8 +100,8 @@ li {
   height: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 90%;          /* Match the li width */
-  margin: 0 auto 20px;  /* Center it */
+  width: 90%;
+  margin: 0 auto 20px;
   border-radius: 15px;
   text-align: center;
 }
@@ -83,14 +109,16 @@ li {
 .radio-buttons {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
+  width: 100%;
 }
 
 li {
   margin-top: 3px;
   margin-bottom: 3px;
-  margin-right: 5%;
-  margin-left: 5%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #FFFDD0;
   border-radius: 15px;
   padding: 8px;
@@ -98,6 +126,19 @@ li {
   display: flex;
   align-items: center;
   gap: 8px;
+  list-style: none;
+}
+
+.drink-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button.newdrink {
@@ -128,48 +169,115 @@ button.newdrink {
   margin-top: 25px;
 }
 
-.title {
-  display: inline-block;
-  margin-bottom: 0;
-  font-size: 2.5em;
+.textbox {
+  width: 90%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 2px solid rgb(226, 195, 147);
+  border-radius: 15px;
+  font-size: 14px;
+  text-align: center;
+  outline: none;
 }
 
-.title-container {
-  text-align: center;  /* Changed from left */
-  margin-bottom: 50px;
-  padding-left: 0;     /* Remove padding */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.textbox:focus {
+  border-color: rgba(138, 98, 12, 0.942);
 }
 
-.drink-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1100px;
+/* Add error state styling */
+.textbox.error {
+  border-color: rgb(219, 93, 93);
+  background-color: rgba(219, 93, 93, 0.1);
 }
 
-.title-with-logo {
-  display: flex;
-  align-items: center;  /* This centers items vertically */
-  justify-content: center;
-  gap: 15px;
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .mini-container {
+    width: 90%;
+    margin: 10px 0;
+    min-height: auto;
+  }
+
+  .title {
+    font-size: 2em;
+  }
+
+  .coffee-logo {
+    width: 35px;
+    height: 35px;
+  }
 }
 
-.coffee-logo {
-  width: 50px;  /* Adjust size as needed */
-  height: 50px;
-  margin-bottom: 5px; /* Fine-tune vertical alignment if needed */
+@media screen and (max-width: 480px) {
+  #root {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.8em;
+  }
+
+  .coffee-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mini-header {
+    width: 90%;
+    font-size: 0.9em;
+  }
+
+  .button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  li {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .answer-space {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 14px;
+  }
 }
 
-.title {
-  display: inline-block;
-  margin: 0;  /* Remove default margins */
-  font-size: 2.5em;
-  line-height: 1;  /* Adjust line height to help with alignment */
+@media screen and (max-width: 320px) {
+  .title {
+    font-size: 1.5em;
+  }
+
+  .coffee-logo {
+    width: 25px;
+    height: 25px;
+  }
+
+  .mini-container {
+    width: 95%;
+    padding: 10px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .mini-container {
+    min-width: 200px;
+    max-width: 250px;
+  }
+  
+  body {
+    font-size: 18px;
+  }
 }
