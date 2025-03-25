@@ -1,27 +1,29 @@
 import React from "react";
 
-const RecipeChoices = ({ handleChange, label, choices, checked }) => {
-    return (
-      <div className="radio-buttons">
-        {/* Add text input at the top */}
-        <input
-          type="text"
-          name={label}
-          value={checked}
-          placeholder="Guess the ingredient..."
-          onChange={handleChange}
-          className="textbox"
-        />
-        
-        {/* List choices below */}
-        {choices &&
-          choices.map((choice) => (
-            <li key={choice}>
-              {choice}
-            </li>
+const RecipeChoices = ({ handleChange, label, choices, value }) => {
+  const handleClick = (choice) => {
+    handleChange({ target: { name: label, value: choice } });
+  };
+
+  return (
+    <div className="radio-buttons">
+      <input
+        type="text"
+        placeholder="Guess the ingredient..."
+        value={value}
+        name={label}
+        onChange={handleChange}
+        className="input-box"
+      />
+      <ul>
+        {choices.map((choice) => (
+          <li key={choice} onClick={() => handleClick(choice)}>
+            {choice}
+          </li>
         ))}
-      </div>
-    );
+      </ul>
+    </div>
+  );
 };
 
 export default RecipeChoices;

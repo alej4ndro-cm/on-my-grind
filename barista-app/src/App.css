@@ -129,6 +129,20 @@ li {
   list-style: none;
 }
 
+li:hover {
+  background-color: #f5e4a0;
+}
+
+
+.input-box {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1px solid tan;
+  font-size: 16px;
+  text-align: center;
+}
+
 .drink-container {
   display: flex;
   justify-content: center;
